@@ -17,57 +17,13 @@
 		<div class="container">
 			<div class="row"> 
 				<div class="col-sm-12">
-					<a href="#" data-bs-toggle="modal" data-bs-target="#cajero" onclick="retiroSinCard()" id="botonA">
+					<a href="#" data-bs-toggle="modal" data-bs-target="#cajero" onclick="retiroSinTarjeta()" id="botonA">
 						<img class="imgAtm mx-auto d-block" src="./img/atm.png" alt="" srcset="">
 					</a>
 				</div>
 				<div class="col-sm-12 col-md-4"></div>
 				<div class="col sm-12 col-md-4" id="cardsDiv">
-					<!-- <div class="card card1" aria-hidden="true" onclick="card1()">
-						<div class="card-body">
-							<h5 class="card-title placeholder-glow">
-							<span class="placeholder col-6"></span>
-							</h5>
-							<p class="card-text placeholder-glow">
-							<span class="placeholder col-7"></span>
-							<span class="placeholder col-4"></span>
-							<span class="placeholder col-4"></span>
-							<span class="placeholder col-6"></span>
-							<span class="placeholder col-8"></span>
-							</p>
-							<a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
-						</div>
-					</div>
-					<div class="card card2" aria-hidden="true" onclick="card2()">
-						<div class="card-body">
-							<h5 class="card-title placeholder-glow">
-							<span class="placeholder col-6"></span>
-							</h5>
-							<p class="card-text placeholder-glow">
-							<span class="placeholder col-7"></span>
-							<span class="placeholder col-4"></span>
-							<span class="placeholder col-4"></span>
-							<span class="placeholder col-6"></span>
-							<span class="placeholder col-8"></span>
-							</p>
-							<a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
-						</div>
-					</div>
-					<div class="card card3" aria-hidden="true" onclick="card3()">
-						<div class="card-body">
-							<h5 class="card-title placeholder-glow">
-							<span class="placeholder col-6"></span>
-							</h5>
-							<p class="card-text placeholder-glow">
-							<span class="placeholder col-7"></span>
-							<span class="placeholder col-4"></span>
-							<span class="placeholder col-4"></span>
-							<span class="placeholder col-6"></span>
-							<span class="placeholder col-8"></span>
-							</p>
-							<a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
-						</div>
-					</div> -->
+
 				</div>
 				<div class="col-sm-12 col-md-4">
 				</div>
@@ -95,7 +51,7 @@
 						</div>
 					</div>
 					<div class="modal-footer bg-dark">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="limpiarCajero()">Salir</button>
 					</div>
 				</div>
 			</div>
