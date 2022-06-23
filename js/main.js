@@ -16,23 +16,23 @@ const limpiarCajero = () => {
 
 const retiroSinTarjeta = () => {
     const botonesPublic = `
-    <div class="col-sm-12">
-        <h2 class="text-black text-center">Bienvenido</h2>
-        <div id="divDate">
-            <p class="text-center">${day}/${month}/${year}</p>
+        <div class="col-sm-12">
+            <h2 class="text-black text-center">Bienvenido</h2>
+            <div id="divDate">
+                <p class="text-center">${day}/${month}/${year}</p>
+            </div>
         </div>
-    </div>
-    <div class="col-sm-12 bg-white shadow-lg pantallaAtm">
-        <div class="d-grid gap-2 col-10 mx-auto">
-            <a href="#" class="btn btn-primary">Retirar sin Tarjeta</a>
-            <a href="#" class="btn btn-primary">Ingresar una tarjeta</a>
-            <a href="#" class="btn btn-danger" data-bs-dismiss="modal" onclick="limpiarCajero();">Salir</a>
+        <div class="col-sm-12 bg-white shadow-lg pantallaAtm">
+            <div class="d-grid gap-2 col-10 mx-auto">
+                <a href="#" class="btn btn-primary">Retirar sin Tarjeta</a>
+                <a href="#" class="btn btn-primary">Ingresar una tarjeta</a>
+                <a href="#" class="btn btn-danger" data-bs-dismiss="modal" onclick="limpiarCajero();">Salir</a>
+            </div>
         </div>
-    </div>
-`
-div.innerHTML = botonesPublic
-atm.appendChild(div);
-const botonA = document.getElementById('botonA')
+    `
+    div.innerHTML = botonesPublic
+    atm.appendChild(div);
+    const botonA = document.getElementById('botonA')
 }
 
 
@@ -69,11 +69,21 @@ for (let index = 0; index < users.length; index++) {
     // }
 }
 
+
 //  -   LOGIN
 
 const viewLogin = () => {
     var uiLogin = `
-    <p>Login</p>
+        <div class="col-sm-12 dark">
+            <h2 class="text-black text-center">Bienvenido</h2>
+            <div id="divDate">
+                <p class="text-center">${day}/${month}/${year}</p>
+            </div>
+        </div>
+
+        <div class="col-sm-12 bg-white shadow-lg pantallaAtm">
+
+        </div>
     `
     atm.innerHTML = uiLogin;
 }
