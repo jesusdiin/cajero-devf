@@ -15,15 +15,15 @@
 	<body class="background">
 		
 		<div class="container">
-			<div class="row">
+			<div class="row"> 
 				<div class="col-sm-12">
-					<a href="#" data-bs-toggle="modal" data-bs-target="#cajero">
+					<a href="#" data-bs-toggle="modal" data-bs-target="#cajero" onclick="retiroSinCard()" id="botonA">
 						<img class="imgAtm mx-auto d-block" src="./img/atm.png" alt="" srcset="">
 					</a>
 				</div>
 				<div class="col-sm-12 col-md-4"></div>
-				<div class="col sm-12 col-md-4">
-					<div class="card card1" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#cajero" onclick="card1()">
+				<div class="col sm-12 col-md-4" id="cardsDiv">
+					<!-- <div class="card card1" aria-hidden="true" onclick="card1()">
 						<div class="card-body">
 							<h5 class="card-title placeholder-glow">
 							<span class="placeholder col-6"></span>
@@ -38,7 +38,7 @@
 							<a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
 						</div>
 					</div>
-					<div class="card card2" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#cajero" onclick="card2()">
+					<div class="card card2" aria-hidden="true" onclick="card2()">
 						<div class="card-body">
 							<h5 class="card-title placeholder-glow">
 							<span class="placeholder col-6"></span>
@@ -53,7 +53,7 @@
 							<a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
 						</div>
 					</div>
-					<div class="card card3" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#cajero" onclick="card3()">
+					<div class="card card3" aria-hidden="true" onclick="card3()">
 						<div class="card-body">
 							<h5 class="card-title placeholder-glow">
 							<span class="placeholder col-6"></span>
@@ -67,7 +67,7 @@
 							</p>
 							<a href="#" tabindex="-1" class="btn btn-primary disabled placeholder col-6"></a>
 						</div>
-					</div>
+					</div> -->
 				</div>
 				<div class="col-sm-12 col-md-4">
 				</div>
@@ -84,32 +84,21 @@
 		<div class="modal fade" id="cajero" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-fullscreen">
 				<div class="modal-content">
-						<div class="modal-header text-bg-dark">
+					<div class="modal-header text-bg-dark">
 							<h5 class="modal-title" id="exampleModalLabel">Devf Bank</h5>
-						</div>
-						<div class="modal-body background position-relative">
-							<div class="container">
-								<div class="row">
-									<div class="col-sm-12">
-										<h2 class="text-black text-center">Bienvenido</h2>
-										<div id="divDate">
-										</div>
-									</div>
-									<div class="col-sm-12 bg-white shadow-lg pantallaAtm">
-										<div class="d-grid gap-2 col-10 mx-auto">
-											<a href="#" class="btn btn-primary">Retirar sin Tarjeta</a>
-											<a href="#" class="btn btn-primary">Ingresar una tarjeta</a>
-											<a href="#" class="btn btn-danger" data-bs-dismiss="modal">Salir</a>
-										</div>
-									</div>
-								</div>
+					</div>
+					<div class="modal-body background position-relative" id="">
+						<div class="container">
+							<div class="row" id="rootAtm">
+								
 							</div>
 						</div>
-						<div class="modal-footer bg-dark">
-							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
-						</div>
+					</div>
+					<div class="modal-footer bg-dark">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Salir</button>
 					</div>
 				</div>
+			</div>
 		</div>
 
 
