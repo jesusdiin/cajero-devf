@@ -1,6 +1,6 @@
 # Cajero Automático
 
-**Description:** *Proyecto final de la Kata JavaScript en [Devf](https://devf.la) con los Senseis Joel y Miguel - Batch 17*
+**Description:** *Proyecto final de la Kata JavaScript perteneciente al Master en Code en [Devf](https://devf.la) con los Senseis Joel y Miguel - Batch 17*
 
 ---
 
@@ -13,7 +13,7 @@ Al ingresar al cajero, puedes seleccionar la cuenta con la que deseas interactua
 
 Para esto, puedes trabajar con un arreglo de objetos como el siguiente:
 
-```
+```javascript
 var cuentas = [
   { nombre: “Mali”, saldo: 200 }
   { nombre: “Gera”, saldo: 290 }
@@ -34,3 +34,11 @@ Al seleccionar ingresar monto, el usuario debe escribir el monto a ingresar.
 - Al seleccionar retirar monto, el usuario debe escribir el monto a retirar. Al retirar el monto, debe mostrarle al usuario el monto retirado y el nuevo saldo total.
 
 Como regla de negocio, una cuenta no debe de tener más de $990 y menos de $10. Es necesario hacer las validaciones pertinentes para que no se rompa esta regla de negocio.
+
+---
+
+**RETO EXTRA PLUS:**
+*Si ya posees conocimientos de desarrollo web con html, css y javascript. Haciendo uso del DOM crea una interfaz con html y css que maneje toda la interacción descrita arriba*
+
+---
+Si gustan pueden clonar o hacer fork del repo
