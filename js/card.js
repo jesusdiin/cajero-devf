@@ -3,7 +3,7 @@ const users = [
         name: 'Jesús',
         lastname: 'Hernández',
         avatar: '', 
-        cards: [{
+        card: {
             banco: 'devfbank',
             numCard: 555444333222111,
             saldo: 5766,
@@ -13,64 +13,39 @@ const users = [
                 referencia: 476768,
                 saldo: 567
             }
-        },
-        {
-            banco: 'bancomer',
-            numCard: 555444333222000,
-            saldo: 5766,
-            pinAtm: 4657,
-            retiroSinTarjeta: {
-                habilitado: true,
-                referencia: 476768,
-                saldo: 567
-            }
         }
-        ]
     },
     {
         name: 'Carlos',
         lastname: 'Slim',
-        avatar: '',
-        cards: [{
-                banco: 'bancomer',
-                numCard: 555444333222555,
-                saldo: 5776766,
-                pinAtm: 4455,
-                retiroSinTarjeta: {
-                    habilitado: false,
-                    referencia: null,
-                    saldo: null
-                }
+        avatar: '', 
+        card: {
+            banco: 'devfbank',
+            numCard: 555444333222000,
+            saldo: 576898096,
+            pinAtm: 9900,
+            retiroSinTarjeta: {
+                habilitado: true,
+                referencia: 476768,
+                saldo: 567786
             }
-        ]
+        }
     },
     {
         name: 'Pedro',
         lastname: 'Smit',
         avatar: '', 
-        cards: [{
+        card: {
             banco: 'devfbank',
-            numCard: 555444333222111,
+            numCard: 555444333222666,
             saldo: 5766,
-            pinAtm: 4657,
-            retiroSinTarjeta: {
-                habilitado: true,
-                referencia: 476768,
-                saldo: 567
-            }
-        },
-        {
-            banco: 'bancomer',
-            numCard: 555444333222000,
-            saldo: 5766,
-            pinAtm: 4657,
+            pinAtm: 1111,
             retiroSinTarjeta: {
                 habilitado: true,
                 referencia: 476768,
                 saldo: 567
             }
         }
-        ]
     }
 ]
 
