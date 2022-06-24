@@ -69,7 +69,7 @@ var viewLogin = (numCard) => {
                             <label for="pinTarjeta" class="form-label">Ingresa tu PIN</label>
                             <input type="password" class="form-control" id="pinTarjeta">
                         </div>
-                        <button type="submit" class="btn btn-primary" id="btnPin" onclick="login()">Siguiente</button>
+                        <button type="submit" class="btn btn-primary" id="btnPin" onclick="login(${usuario.card.numCard}, ${usuario.card.pinAtm})">Siguiente</button>
                     </form>
                 </div>
             </div>
@@ -83,19 +83,37 @@ var viewLogin = (numCard) => {
 
 }
 
-const login = () => {
-    const userPin = Number(document.getElementById('pinTarjeta').value);
-    console.log(userPin)
+const login = (card, pin) => {
 
-    if (userPin == usuario.card.pinAtm) {
-        console.log('Success')
-        // homeCajero(usuario);
-        console.log(usuario.card)
+    const userCard = document.getElementById('numTarjeta').value;
+    const userPin = Number(document.getElementById('pinTarjeta').value);
+
+    if (userCard != card) {
+        console.log('Ingresa una tarjeta válida')
+    } else if (userCard == card && userPin == pin){
+        console.log('Succes')
+        homeCajero(card, pin);
     } else {
         console.log('Pin Incorrecto')
         alert('Ingresa el PIN Correcto')
     }
 }
+
+const homeCajero = (card, pin) => {
+    var home = `
+        <div class="col-sm-12">
+            <h2 class="text-black text-center">Bienvenido</h2>
+            <div id="divDate">
+                <p class="text-center">${day}/${month}/${year}</p>
+            </div>
+        </div>
+        <div class="col-sm-12 bg-white shadow-lg pantallaAtm">
+
+        </div>
+    `
+    atm.innerHTML = home;
+}
+
 
 
 
@@ -120,29 +138,3 @@ const retiroSinTarjeta = () => {
     div.innerHTML = botonesPublic
     atm.appendChild(div);
 }
-
-
-
-//  -   For Interfaz
-for (let index = 0; index < users.length; index++) {
-
-    var usuario = users[index];
-    console.log(usuario)
-
-
-
-
-
-    const homeCajero = () => {
-        
-    }
-
-}
-
-
-//  -   For Validacion
-// for (let index = 0; index < users.length; index++) {
-
-// }
-
-
