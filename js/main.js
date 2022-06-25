@@ -1,6 +1,8 @@
 const date = new Date();
 const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()];
 
+// Variables globales Saldo
+var saldo;
 
 //  -   Menu Public
 
@@ -48,7 +50,6 @@ const renderCards = () => {
 renderCards();
 
 var viewLogin = (numCard) => {
-
     for (let index = 0; index < users.length; index++) {
         const usuario = users[index];
 
@@ -78,13 +79,10 @@ var viewLogin = (numCard) => {
             atm.innerHTML = uiLogin;
             console.log(numCard, usuario.card.numCard)
         }
-        
     }
-
 }
 
 const login = (card, pin) => {
-
     const userCard = document.getElementById('numTarjeta').value;
     const userPin = Number(document.getElementById('pinTarjeta').value);
 
@@ -92,14 +90,35 @@ const login = (card, pin) => {
         console.log('Ingresa una tarjeta válida')
     } else if (userCard == card && userPin == pin){
         console.log('Succes')
-        homeCajero(card, pin);
+        homeCajero(card);
+        findUser(card)
     } else {
         console.log('Pin Incorrecto')
         alert('Ingresa el PIN Correcto')
     }
 }
 
-const homeCajero = (card, pin) => {
+const findUser = (card) => {
+    const encontrado = users.find((n) => n.card.numCard == card);
+    return encontrado;
+}
+
+let userPublic = findUser();
+
+console.log(userPublic)
+
+const homeCajero = (card) => {
+    const buscarUserByCard = users.find(userFind => userFind.card.numCard == card);
+    var saldo = buscarUserByCard.card.saldo;
+
+    var consultarSaldo = () => {
+        console.log(saldo)
+    }
+    consultarSaldo()
+
+
+
+
     var home = `
         <div class="col-sm-12">
             <h2 class="text-black text-center">Bienvenido</h2>
@@ -107,16 +126,59 @@ const homeCajero = (card, pin) => {
                 <p class="text-center">${day}/${month}/${year}</p>
             </div>
         </div>
-        <div class="col-sm-12 bg-white shadow-lg pantallaAtm">
+        <div class="col-sm-12 bg-white shadow-lg pantallaAtm" id="">
+            <!--
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title placeholder-glow">
+                    </h5>
+                    <p class="card-text placeholder-glow" id="pCardIdbj">
+                        <span class="placeholder col-7"></span>
+                        <span class="placeholder col-4"></span>
+                        <span class="placeholder col-4"></span>
+                        <span class="placeholder col-6"></span>
+                        <span class="placeholder col-8"></span>
+                    </p>
+                    <a href="#" tabindex="-1" class="btn btn-primary col-6">
+                    jkk
+                    </a>
+                </div>
+            </div>
+            -->
+            <div id="divSaldo">
+            </div>
+            <a href="#" class="btn btn-primary">Consultar saldo</a>
 
         </div>
     `
     atm.innerHTML = home;
+
+    const saldoMinimo = 10;
+    const saldoMaximo = 900;
+
+    const ingresarMonto = () => {
+        var montoAingresar = 0;
+        let saldoAvalidar = saldo + montoAingresar;
+        if (saldoAvalidar <= saldoMaximo) {
+            saldo = saldoAvalidar;
+        } else {
+            alert('El Saldo no de tu cuenta no debe superar los ' + saldoMaximo)
+        }
+    }
+
+    const retirarSaldo = () => {
+        var montoAretirar = 0;
+        let saldoAvalidar = saldo - montoAretirar;
+        if (montoAretirar == 0) {
+            alert('Ingresa un valor válido a retirar')
+        } else if (saldoAvalidar <= saldoMinimo) {
+            alert('No puedes dejar tu cuenta con ' + saldoMinimo)
+        } else {
+            saldo = saldoAvalidar
+        }
+    }
+    
 }
-
-
-
-
 
 
 const retiroSinTarjeta = () => {

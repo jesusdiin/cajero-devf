@@ -6,7 +6,7 @@ const users = [
         card: {
             banco: 'devfbank',
             numCard: 555444333222111,
-            saldo: 5766,
+            saldo: 677,
             pinAtm: 4657,
             retiroSinTarjeta: {
                 habilitado: true,
@@ -23,7 +23,7 @@ const users = [
             banco: 'devfbank',
             numCard: 555444333222000,
             saldo: 576898096,
-            pinAtm: 9900,
+            pinAtm: 800,
             retiroSinTarjeta: {
                 habilitado: true,
                 referencia: 476768,
@@ -38,7 +38,7 @@ const users = [
         card: {
             banco: 'devfbank',
             numCard: 555444333222666,
-            saldo: 5766,
+            saldo: 576,
             pinAtm: 1111,
             retiroSinTarjeta: {
                 habilitado: true,
@@ -55,4 +55,5 @@ const users = [
 //     for (let j = 0; j < users[index].cards.length; j++) {
 //         console.log(`${users[index].cards[j].numCard} - PIN: ${users[index].cards[j].pinAtm}`)
 //     }
-// }
+// }`
+
