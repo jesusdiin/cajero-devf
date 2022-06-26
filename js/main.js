@@ -88,7 +88,7 @@ const login = (card, pin) => {
     numCardPublic = card;
 
     if (userCard != card) {
-        console.log('Ingresa una tarjeta válida')
+        alert('Ingresa una tarjeta válida')
     } else if (userCard == card && userPin == pin){
         console.log('Succes')
         return findUser(numCardPublic), homeCajero();
@@ -147,28 +147,31 @@ const homeCajero = () => {
                 <p class="text-center">${day}/${month}/${year}</p>
             </div>
         </div>
-        <div class="col-sm-12 bg-white shadow-lg pantallaAtm" id="">
-            <!--
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title placeholder-glow">
-                    </h5>
-                    <p class="card-text placeholder-glow" id="pCardIdbj">
-                        <span class="placeholder col-7"></span>
-                        <span class="placeholder col-4"></span>
-                        <span class="placeholder col-4"></span>
-                        <span class="placeholder col-6"></span>
-                        <span class="placeholder col-8"></span>
-                    </p>
-                    <a href="#" tabindex="-1" class="btn btn-primary col-6">
-                    jkk
-                    </a>
+        <div class="bg-white shadow-lg pantallaAtm" id="">
+
+            <div class="d-grid d-gap col-md-5 col-lg-4 col-sm-12 mx-auto">
+
+                <div class="tarjeta background shadow">
+                    <div class="rootTarjeta">
+                        <div class="tarjetaHead">
+                            <h1>${userEncontradoPublic.card.banco}</h1>
+                        </div>
+                        <div class="tarjetaBody">
+                            <img src="../img/chip.png" class="chipImg" alt="">
+                            <h2>${userEncontradoPublic.card.numCard}</h2>
+                            <p>22/2025</p>
+                        </div>
+                        <div class="tarjetaFooter">
+                            <h5>${userEncontradoPublic.name} ${userEncontradoPublic.lastname}</h5>
+                        </div>
+                    </div>
                 </div>
+
+                <div>
+                    <h3>$${userEncontradoPublic.card.saldo}</h3>
+                </div>
+
             </div>
-            -->
-            <div id="divSaldo">
-            </div>
-            <a href="#" class="btn btn-primary">Consultar saldo</a>
 
         </div>
     `

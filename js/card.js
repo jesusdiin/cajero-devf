@@ -2,7 +2,6 @@ const users = [
     {
         name: 'Jesús',
         lastname: 'Hernández',
-        avatar: '', 
         card: {
             banco: 'devfbank',
             numCard: 555444333222111,
@@ -18,7 +17,6 @@ const users = [
     {
         name: 'Carlos',
         lastname: 'Slim',
-        avatar: '', 
         card: {
             banco: 'devfbank',
             numCard: 555444333222000,
@@ -34,7 +32,6 @@ const users = [
     {
         name: 'Pedro',
         lastname: 'Smit',
-        avatar: '', 
         card: {
             banco: 'devfbank',
             numCard: 555444333222666,
