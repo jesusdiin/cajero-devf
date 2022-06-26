@@ -22,8 +22,8 @@ const users = [
         card: {
             banco: 'devfbank',
             numCard: 555444333222000,
-            saldo: 576898096,
-            pinAtm: 800,
+            saldo: 345,
+            pinAtm: 8800,
             retiroSinTarjeta: {
                 habilitado: true,
                 referencia: 476768,

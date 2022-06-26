@@ -3,9 +3,9 @@ const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()]
 
 // Variables globales Saldo
 var saldo;
+var numCardPublic;
 
 //  -   Menu Public
-
 const atm = document.getElementById('rootAtm');
 const div = document.createElement('div');
 
@@ -13,7 +13,6 @@ const limpiarCajero = () => {
     const divClear = ` `;
     atm.innerHTML = divClear;
 }
-
 
 //  -   Renderizar Tarjetas
 
@@ -86,38 +85,60 @@ const login = (card, pin) => {
     const userCard = document.getElementById('numTarjeta').value;
     const userPin = Number(document.getElementById('pinTarjeta').value);
 
+    numCardPublic = card;
+
     if (userCard != card) {
         console.log('Ingresa una tarjeta válida')
     } else if (userCard == card && userPin == pin){
         console.log('Succes')
-        homeCajero(card);
-        findUser(card)
+        return findUser(numCardPublic), homeCajero();
     } else {
         console.log('Pin Incorrecto')
         alert('Ingresa el PIN Correcto')
     }
 }
 
+var userEncontradoPublic;
+
 const findUser = (card) => {
-    const encontrado = users.find((n) => n.card.numCard == card);
-    return encontrado;
+    userEncontradoPublic = users.find((n) => n.card.numCard == card);
+    return userEncontradoPublic;
 }
 
-let userPublic = findUser();
+const consultarSaldo = () => {
+    saldo = userEncontradoPublic.card.saldo;
+    console.log(saldo)
+}
 
-console.log(userPublic)
+const saldoMinimo = 10;
+const saldoMaximo = 900;
 
-const homeCajero = (card) => {
-    const buscarUserByCard = users.find(userFind => userFind.card.numCard == card);
-    var saldo = buscarUserByCard.card.saldo;
-
-    var consultarSaldo = () => {
-        console.log(saldo)
+const ingresarMonto = () => {
+    var montoAingresar = 0;
+    let saldoAvalidar = saldo + montoAingresar;
+    if (saldoAvalidar <= saldoMaximo) {
+        saldo = saldoAvalidar;
+    } else {
+        alert('El Saldo no de tu cuenta no debe superar los ' + saldoMaximo)
     }
-    consultarSaldo()
+}
+
+const retirarSaldo = () => {
+    var montoAretirar = 0;
+    let saldoAvalidar = saldo - montoAretirar;
+    if (montoAretirar == 0) {
+        alert('Ingresa un valor válido a retirar')
+    } else if (saldoAvalidar <= saldoMinimo) {
+        alert('No puedes dejar tu cuenta con ' + saldoMinimo)
+    } else {
+        saldo = saldoAvalidar
+    }
+}
 
 
+const homeCajero = () => {
 
+    consultarSaldo();
 
     var home = `
         <div class="col-sm-12">
@@ -152,31 +173,6 @@ const homeCajero = (card) => {
         </div>
     `
     atm.innerHTML = home;
-
-    const saldoMinimo = 10;
-    const saldoMaximo = 900;
-
-    const ingresarMonto = () => {
-        var montoAingresar = 0;
-        let saldoAvalidar = saldo + montoAingresar;
-        if (saldoAvalidar <= saldoMaximo) {
-            saldo = saldoAvalidar;
-        } else {
-            alert('El Saldo no de tu cuenta no debe superar los ' + saldoMaximo)
-        }
-    }
-
-    const retirarSaldo = () => {
-        var montoAretirar = 0;
-        let saldoAvalidar = saldo - montoAretirar;
-        if (montoAretirar == 0) {
-            alert('Ingresa un valor válido a retirar')
-        } else if (saldoAvalidar <= saldoMinimo) {
-            alert('No puedes dejar tu cuenta con ' + saldoMinimo)
-        } else {
-            saldo = saldoAvalidar
-        }
-    }
     
 }
 
