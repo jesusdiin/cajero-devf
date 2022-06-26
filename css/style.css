@@ -22,19 +22,17 @@
     height: 60vh;
 }
 
-/* CARD */
-
-/* .card1 {
-    margin-top: 160px;
-    transform: rotate(340deg);
+/* Tarjeta */
+.tarjeta{
+    border-radius: 12px;
+    margin-top: 20px;
+    background: #606c88;
+    background: -webkit-radial-gradient(circle, #606c88 0%, #3f4c6b 100%);
+    background: radial-gradient(circle, #606c88 0%, #3f4c6b 100%);
 }
-
-.card2 {
-    margin-top: -160px;
-    transform: rotate(270deg);
+.rootTarjeta {
+    margin: 25px;
 }
-
-.card3 {
-    margin-top: -160px;
-    transform: rotate(45deg);
-} */
+.chipImg {
+    width: 50px;
+}

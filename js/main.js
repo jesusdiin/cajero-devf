@@ -1,9 +1,11 @@
 const date = new Date();
 const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()];
 
+// Variables globales Saldo
+var saldo;
+var numCardPublic;
 
 //  -   Menu Public
-
 const atm = document.getElementById('rootAtm');
 const div = document.createElement('div');
 
@@ -11,7 +13,6 @@ const limpiarCajero = () => {
     const divClear = ` `;
     atm.innerHTML = divClear;
 }
-
 
 //  -   Renderizar Tarjetas
 
@@ -48,7 +49,6 @@ const renderCards = () => {
 renderCards();
 
 var viewLogin = (numCard) => {
-
     for (let index = 0; index < users.length; index++) {
         const usuario = users[index];
 
@@ -69,7 +69,7 @@ var viewLogin = (numCard) => {
                             <label for="pinTarjeta" class="form-label">Ingresa tu PIN</label>
                             <input type="password" class="form-control" id="pinTarjeta">
                         </div>
-                        <button type="submit" class="btn btn-primary" id="btnPin" onclick="login()">Siguiente</button>
+                        <button type="submit" class="btn btn-primary" id="btnPin" onclick="login(${usuario.card.numCard}, ${usuario.card.pinAtm})">Siguiente</button>
                     </form>
                 </div>
             </div>
@@ -78,27 +78,106 @@ var viewLogin = (numCard) => {
             atm.innerHTML = uiLogin;
             console.log(numCard, usuario.card.numCard)
         }
-        
     }
-
 }
 
-const login = () => {
+const login = (card, pin) => {
+    const userCard = document.getElementById('numTarjeta').value;
     const userPin = Number(document.getElementById('pinTarjeta').value);
-    console.log(userPin)
 
-    if (userPin == usuario.card.pinAtm) {
-        console.log('Success')
-        // homeCajero(usuario);
-        console.log(usuario.card)
+    numCardPublic = card;
+
+    if (userCard != card) {
+        alert('Ingresa una tarjeta válida')
+    } else if (userCard == card && userPin == pin){
+        console.log('Succes')
+        return findUser(numCardPublic), homeCajero();
     } else {
         console.log('Pin Incorrecto')
         alert('Ingresa el PIN Correcto')
     }
 }
 
+var userEncontradoPublic;
+
+const findUser = (card) => {
+    userEncontradoPublic = users.find((n) => n.card.numCard == card);
+    return userEncontradoPublic;
+}
+
+const consultarSaldo = () => {
+    saldo = userEncontradoPublic.card.saldo;
+    console.log(saldo)
+}
+
+const saldoMinimo = 10;
+const saldoMaximo = 900;
+
+const ingresarMonto = () => {
+    var montoAingresar = 0;
+    let saldoAvalidar = saldo + montoAingresar;
+    if (saldoAvalidar <= saldoMaximo) {
+        saldo = saldoAvalidar;
+    } else {
+        alert('El Saldo no de tu cuenta no debe superar los ' + saldoMaximo)
+    }
+}
+
+const retirarSaldo = () => {
+    var montoAretirar = 0;
+    let saldoAvalidar = saldo - montoAretirar;
+    if (montoAretirar == 0) {
+        alert('Ingresa un valor válido a retirar')
+    } else if (saldoAvalidar <= saldoMinimo) {
+        alert('No puedes dejar tu cuenta con ' + saldoMinimo)
+    } else {
+        saldo = saldoAvalidar
+    }
+}
 
 
+const homeCajero = () => {
+
+    consultarSaldo();
+
+    var home = `
+        <div class="col-sm-12">
+            <h2 class="text-black text-center">Bienvenido</h2>
+            <div id="divDate">
+                <p class="text-center">${day}/${month}/${year}</p>
+            </div>
+        </div>
+        <div class="bg-white shadow-lg pantallaAtm" id="">
+
+            <div class="d-grid d-gap col-md-5 col-lg-4 col-sm-12 mx-auto">
+
+                <div class="tarjeta background shadow">
+                    <div class="rootTarjeta">
+                        <div class="tarjetaHead">
+                            <h1>${userEncontradoPublic.card.banco}</h1>
+                        </div>
+                        <div class="tarjetaBody">
+                            <img src="../img/chip.png" class="chipImg" alt="">
+                            <h2>${userEncontradoPublic.card.numCard}</h2>
+                            <p>22/2025</p>
+                        </div>
+                        <div class="tarjetaFooter">
+                            <h5>${userEncontradoPublic.name} ${userEncontradoPublic.lastname}</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3>$${userEncontradoPublic.card.saldo}</h3>
+                </div>
+
+            </div>
+
+        </div>
+    `
+    atm.innerHTML = home;
+    
+}
 
 
 const retiroSinTarjeta = () => {
@@ -120,29 +199,3 @@ const retiroSinTarjeta = () => {
     div.innerHTML = botonesPublic
     atm.appendChild(div);
 }
-
-
-
-//  -   For Interfaz
-for (let index = 0; index < users.length; index++) {
-
-    var usuario = users[index];
-    console.log(usuario)
-
-
-
-
-
-    const homeCajero = () => {
-        
-    }
-
-}
-
-
-//  -   For Validacion
-// for (let index = 0; index < users.length; index++) {
-
-// }
-
-
