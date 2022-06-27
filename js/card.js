@@ -43,6 +43,21 @@ const users = [
                 saldo: 567
             }
         }
+    },
+    {
+        name: 'Carmen',
+        lastname: 'Rosalía',
+        card: {
+            banco: 'devfbank',
+            numCard: 555444333222777,
+            saldo: 12,
+            pinAtm: 1010,
+            retiroSinTarjeta: {
+                habilitado: true,
+                referencia: 476768,
+                saldo: 567
+            }
+        }
     }
 ]
 
