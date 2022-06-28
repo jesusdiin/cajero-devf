@@ -19,7 +19,13 @@
 /* ATM */
 
 .pantallaAtm {
-    height: 60vh;
+    height: 70vh;
+}
+
+/* Login */
+.loginDiv {
+    margin-top: 10%;
+    padding: 50px 40px 50px 40px;
 }
 
 /* Tarjeta */

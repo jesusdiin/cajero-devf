@@ -60,16 +60,18 @@ var viewLogin = (numCard) => {
             </div>
 
             <div class="col-sm-12 bg-white shadow-lg pantallaAtm">
-                <div class="d-grid gap-2 col-10 mx-auto">
-                    <form id="pinForm">
-                        <div class="mb-3">
-                            <label for="pinTarjeta" class="form-label">Tarjeta</label>
-                            <input type="number" class="form-control" id="numTarjeta" value="${usuario.card.numCard}">
-                            <label for="pinTarjeta" class="form-label">Ingresa tu PIN</label>
-                            <input type="password" class="form-control" id="pinTarjeta">
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="btnPin" onclick="login(${usuario.card.numCard}, ${usuario.card.pinAtm})">Siguiente</button>
-                    </form>
+                <div class="d-grid d-gap col-md-6 col-lg-8 col-sm-12 mx-auto shadow loginDiv">
+                    <div class="d-grid gap-2 col-10 mx-auto">
+                        <form id="pinForm">
+                            <div class="mb-3">
+                                <label for="pinTarjeta" class="form-label">Tarjeta</label>
+                                <input type="number" class="form-control" id="numTarjeta" value="${usuario.card.numCard}">
+                                <label for="pinTarjeta" class="form-label">Ingresa tu PIN</label>
+                                <input type="password" class="form-control" id="pinTarjeta">
+                            </div>
+                            <button type="submit" class="btn btn-primary" id="btnPin" onclick="login(${usuario.card.numCard}, ${usuario.card.pinAtm})">Siguiente</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         `
@@ -116,14 +118,16 @@ const saldoMaximo = 900;
 
 const ingresarMonto = () => {
     var inputDepositar = Number(document.getElementById('inputDepositar').value);
+    let evaular = saldo + inputDepositar;
 
     let innerSaldo = document.getElementById('saldoPrint');
 
-    if (inputDepositar < saldoMaximo) {
-        saldo = (saldo + inputDepositar);
-        innerSaldo.innerHTML = saldo;
-    } else {
+    if (evaular > saldoMaximo) {
         alert('El Saldo no de tu cuenta no debe superar los ' + saldoMaximo)
+
+    } else {
+        saldo = (saldo + inputDepositar);
+        innerSaldo.innerHTML = `$ ${saldo}`;
     }
 }
 
@@ -131,10 +135,12 @@ const retirarSaldo = () => {
     var inputRetirar = Number(document.getElementById('inputRetirar').value);
     let innerSaldo = document.getElementById('saldoPrint');
 
+    let evaular = saldo - inputRetirar;
+
 
     if (inputRetirar == 0) {
         alert('Ingresa un valor válido a retirar')
-    } else if (saldo < saldoMinimo) {
+    } else if (evaular < saldoMinimo) {
         alert('No puedes dejar tu cuenta con ' + saldoMinimo)
     } else {
         saldo = (saldo - inputRetirar);
@@ -157,7 +163,7 @@ const homeCajero = () => {
         <div class="bg-white shadow-lg pantallaAtm" id="">
 
             <div class="d-grid d-gap col-md-5 col-lg-4 col-sm-12 mx-auto">
-
+                <br>
                 <div class="tarjeta background shadow">
                     <div class="rootTarjeta">
                         <div class="tarjetaHead">
@@ -174,20 +180,16 @@ const homeCajero = () => {
                     </div>
                 </div>
 
-                <div>
-                    <h3 id="saldoPrint">$${userEncontradoPublic.card.saldo}</h3>
-                </div>
-
             </div>
 
+            <br>
 
             <div class="d-grid d-gap col-md-6 col-lg-8 col-sm-12 mx-auto shadow">
+                <br>
                 <h3 class="text-center">Saldo disponible:</h3>
+                <h3 class="text-center" id="saldoPrint">$${userEncontradoPublic.card.saldo}</h3>
                 <hr>
                 <div class="d-grid d-gap col-md-4 col-lg-6 col-sm-12 mx-auto">
-                    <p id="saldoDisponible">
-                        0
-                    </p>
                 </div>
                 <br>
                 <div class="d-grid d-gap col-md-6 col-lg-8 col-sm-12 mx-auto">
@@ -206,6 +208,13 @@ const homeCajero = () => {
                         <input type="number" class="form-control" id="inputRetirar">
                         <button class="btn btn-primary" type="button" id="btnRetirar" onclick="retirarSaldo();">Retirar</button>
                     </div>
+                    <div>
+                        <button class="btn btn-primary btn-lg" onclick="btnMontos(800);">800</button>
+                        <button class="btn btn-primary btn-lg" onclick="btnMontos(500);">500</button>
+                        <button class="btn btn-primary btn-lg" onclick="btnMontos(200);">200</button>
+                        <button class="btn btn-primary btn-lg" onclick="btnMontos(100);">100</button>
+                        <button class="btn btn-primary btn-lg" onclick="btnMontos(100);">50</button>
+                    </div>
                 </div>
                 <br>
             </div>
@@ -217,6 +226,9 @@ const homeCajero = () => {
     
 }
 
+const btnMontos = (cantidad) => {
+    document.getElementById('inputRetirar').value = cantidad
+}
 
 const retiroSinTarjeta = () => {
     const botonesPublic = `
