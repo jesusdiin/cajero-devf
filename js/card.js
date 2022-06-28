@@ -43,29 +43,5 @@ const users = [
                 saldo: 567
             }
         }
-    },
-    {
-        name: 'Carmen',
-        lastname: 'Rosalía',
-        card: {
-            banco: 'devfbank',
-            numCard: 555444333222777,
-            saldo: 12,
-            pinAtm: 1010,
-            retiroSinTarjeta: {
-                habilitado: true,
-                referencia: 476768,
-                saldo: 567
-            }
-        }
     }
 ]
-
-// console.log(users[0].cards)
-// for (let index = 0; index < users.length; index++) {
-//     console.log(`Usuario: ${users[index].name} - Num. Tarjeta: `);
-//     for (let j = 0; j < users[index].cards.length; j++) {
-//         console.log(`${users[index].cards[j].numCard} - PIN: ${users[index].cards[j].pinAtm}`)
-//     }
-// }`
-
