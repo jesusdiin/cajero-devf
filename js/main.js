@@ -22,24 +22,23 @@ const renderCards = () => {
     for (let index = 0; index < users.length; index++) {
         const usuario = users[index];
         var card = `
-            <div class="card" aria-hidden="true" data-bs-toggle="modal" data-bs-target="#cajero"  onclick="viewLogin(${usuario.card.numCard})">
-                <div class="card-body">
-                    <h5 class="card-title placeholder-glow">
-                        Tarjeta de ${usuario.name}
-                    </h5>
-                    <p class="card-text placeholder-glow" id="pCardId${index}">
-                        ${usuario.card.numCard}
-                        <span class="placeholder col-7"></span>
-                        <span class="placeholder col-4"></span>
-                        <span class="placeholder col-4"></span>
-                        <span class="placeholder col-6"></span>
-                        <span class="placeholder col-8"></span>
-                    </p>
-                    <a href="#" tabindex="-1" class="btn btn-primary col-6">
-                        ${usuario.card.pinAtm}
-                    </a>
-                </div>
-            </div>
+
+                    <div class="tarjeta background shadow aria-hidden="true" data-bs-toggle="modal" data-bs-target="#cajero"  onclick="viewLogin(${usuario.card.numCard})">
+                        <div class="rootTarjeta">
+                            <div class="tarjetaHead">
+                                <h1>${usuario.card.banco}</h1>
+                            </div>
+                            <div class="tarjetaBody">
+                                <img src="../img/chip.png" class="chipImg" alt="">
+                                <h2>${usuario.card.numCard}</h2>
+                                <p>${usuario.card.pinAtm}</p>
+                            </div>
+                            <div class="tarjetaFooter">
+                                <h5>${usuario.name} ${usuario.lastname}</h5>
+                            </div>
+                        </div>
+                    </div>
+
         `
         cardsDiv.innerHTML += card
         console.log(users[index].name)
@@ -107,6 +106,8 @@ const findUser = (card) => {
 
 const consultarSaldo = () => {
     saldo = userEncontradoPublic.card.saldo;
+    let innerSaldo = document.getElementById('saldoDisponible');
+    // innerSaldo.innerHTML = saldo;
     console.log(saldo)
 }
 
@@ -114,24 +115,30 @@ const saldoMinimo = 10;
 const saldoMaximo = 900;
 
 const ingresarMonto = () => {
-    var montoAingresar = 0;
-    let saldoAvalidar = saldo + montoAingresar;
-    if (saldoAvalidar <= saldoMaximo) {
-        saldo = saldoAvalidar;
+    var inputDepositar = Number(document.getElementById('inputDepositar').value);
+
+    let innerSaldo = document.getElementById('saldoPrint');
+
+    if (inputDepositar < saldoMaximo) {
+        saldo = (saldo + inputDepositar);
+        innerSaldo.innerHTML = saldo;
     } else {
         alert('El Saldo no de tu cuenta no debe superar los ' + saldoMaximo)
     }
 }
 
 const retirarSaldo = () => {
-    var montoAretirar = 0;
-    let saldoAvalidar = saldo - montoAretirar;
-    if (montoAretirar == 0) {
+    var inputRetirar = Number(document.getElementById('inputRetirar').value);
+    let innerSaldo = document.getElementById('saldoPrint');
+
+
+    if (inputRetirar == 0) {
         alert('Ingresa un valor válido a retirar')
-    } else if (saldoAvalidar <= saldoMinimo) {
+    } else if (saldo < saldoMinimo) {
         alert('No puedes dejar tu cuenta con ' + saldoMinimo)
     } else {
-        saldo = saldoAvalidar
+        saldo = (saldo - inputRetirar);
+        innerSaldo.innerHTML = `$ ${saldo}`;
     }
 }
 
@@ -159,7 +166,7 @@ const homeCajero = () => {
                         <div class="tarjetaBody">
                             <img src="../img/chip.png" class="chipImg" alt="">
                             <h2>${userEncontradoPublic.card.numCard}</h2>
-                            <p>22/2025</p>
+                            <p>${userEncontradoPublic.card.pinAtm}</p>
                         </div>
                         <div class="tarjetaFooter">
                             <h5>${userEncontradoPublic.name} ${userEncontradoPublic.lastname}</h5>
@@ -168,10 +175,41 @@ const homeCajero = () => {
                 </div>
 
                 <div>
-                    <h3>$${userEncontradoPublic.card.saldo}</h3>
+                    <h3 id="saldoPrint">$${userEncontradoPublic.card.saldo}</h3>
                 </div>
 
             </div>
+
+
+            <div class="d-grid d-gap col-md-6 col-lg-8 col-sm-12 mx-auto shadow">
+                <h3 class="text-center">Saldo disponible:</h3>
+                <hr>
+                <div class="d-grid d-gap col-md-4 col-lg-6 col-sm-12 mx-auto">
+                    <p id="saldoDisponible">
+                        0
+                    </p>
+                </div>
+                <br>
+                <div class="d-grid d-gap col-md-6 col-lg-8 col-sm-12 mx-auto">
+                    <h3>Realizar depósito:</h3>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control" id="inputDepositar">
+                        <button class="btn btn-primary" type="button" id="" onclick="ingresarMonto();">Depósitar</button>
+                    </div>
+                </div>
+                <br>
+                <div class="d-grid d-gap col-md-6 col-lg-8 col-sm-12 mx-auto">
+                    <h3>Realizar retiro:</h3>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">$</span>
+                        <input type="number" class="form-control" id="inputRetirar">
+                        <button class="btn btn-primary" type="button" id="btnRetirar" onclick="retirarSaldo();">Retirar</button>
+                    </div>
+                </div>
+                <br>
+            </div>
+
 
         </div>
     `
